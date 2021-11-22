@@ -1,0 +1,52 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+@font-face {
+  font-family: "Manrope";
+  font-weight: 400, 500, 600, 700, 800;
+  font-style: normal;
+  font-display: auto;
+  unicode-range: U+000-5FF;
+  src: url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;800&display=swap");
+}
+
+body {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.background-title {
+  font-weight: 800;
+  font-size: 80px;
+}
+
+.high-title {
+  font-weight: 400;
+  font-size: 48px;
+}
+
+.title {
+  font-weight: 800;
+  font-size: 32px;
+}
+
+.body-highlight {
+  font-weight: 800;
+  font-size: 16px;
+}
+
+.body {
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+  line-height: 26px;
+}
+
+li,
+ul {
+  text-decoration: none;
+  list-style: none;
+}
