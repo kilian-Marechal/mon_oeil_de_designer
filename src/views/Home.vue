@@ -1,17 +1,17 @@
 <template>
-  <div class="home">
-    <PrimaryButton href="#" to="to" />
+  <div class="">
+    <RankedUsersList />
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import PrimaryButton from "@/components/PrimaryButton.vue";
+import RankedUsersList from "@/components/UsersList.vue";
 
 export default {
   name: "Home",
   components: {
-    PrimaryButton
+    RankedUsersList
   }
 };
 </script>

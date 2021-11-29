@@ -9,9 +9,14 @@
 import RankedUsersList from "@/components/UsersList.vue";
 
 export default {
-  name: "About",
+  name: "Leaderboard",
   components: {
     RankedUsersList
+  },
+  data() {
+    return {};
   }
 };
 </script>
+
+<style lang="scss" scoped></style>
