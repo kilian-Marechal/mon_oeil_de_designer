@@ -1,5 +1,9 @@
 <template>
-  <div class="modal" :class="{ modalActive: optionsOpened }"></div>
+  <div
+    class="modal"
+    :class="{ modalActive: optionsOpened }"
+    @click="optionsToggle"
+  ></div>
   <div class="edit-profile" :class="{ editOpened: editOpened }">
     <div class="primary-button-container">
       <button
@@ -13,7 +17,7 @@
       <div class="image-container">
         <img class="profile-image" :src="$store.state.user.picture" alt="" />
       </div>
-      <button class="secondary-button button">Changer de photo</button>
+      <button class="dark-button button">Changer de photo</button>
     </div>
     <div class="infos-container">
       <div class="infos-subcontainer mb-24">
@@ -72,7 +76,7 @@
     </p>
     <div>
       <button class="primary-button">S'inscrire</button>
-      <button class="secondary-button">Se connecter</button>
+      <button class="dark-button">Se connecter</button>
     </div>
   </div>
 </template>
@@ -156,7 +160,7 @@ export default {
 
 .editOpened {
   z-index: 20;
-  height: 97.5%;
+  height: 100%;
 }
 
 .profile-block {

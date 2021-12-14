@@ -5,6 +5,7 @@
 }
 
 body {
+  min-height: 100vh;
   font-family: "Manrope", sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -16,8 +17,14 @@ body {
 }
 
 .background-title {
+  position: absolute;
+  top: 45%;
+  left: 0%;
   font-weight: 800;
   font-size: 80px;
+  color: $accent;
+  opacity: 0.1;
+  transform: rotate(90deg);
 }
 
 .high-title {
@@ -29,6 +36,7 @@ body {
 .title {
   font-size: 32px;
   color: $font-color;
+  line-height: 40px;
 }
 
 .body-highlight {
@@ -59,9 +67,16 @@ button {
   color: $white;
 }
 
-.secondary-button {
+.dark-button {
   background-color: $dark;
   color: $secondary;
+}
+
+.play-button {
+  background-color: $secondary;
+  color: $white;
+  padding: 16px 32px;
+  border-radius: 4px;
 }
 
 .mr-8 {
@@ -137,17 +152,20 @@ button {
   .active {
     width: 48px;
     height: 48px;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
   }
 
   .not-active {
     width: 40px;
     height: 40px;
     cursor: pointer;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
   }
+}
+
+p {
+  max-width: 100%;
+  overflow-wrap: break-word;
+}
+
+.gradient-bg {
+  background: $gradientBG;
 }

@@ -1,16 +1,7 @@
 <template>
-  <div class="search-container section">
-    <p class="mb-8">Trouve ton designer ...</p>
-    <input
-      class="searchbar"
-      type="text"
-      v-model="searchQuery"
-      placeholder="Search"
-    />
-  </div>
-  <div class="list-container section">
-    <ol v-if="resultQuery.length">
-      <li class="body" v-for="user in resultQuery" :key="user.accountScore">
+  <div id="sortedUsers" class="list-container section">
+    <ol>
+      <li class="body" v-for="user in sortUsers" :key="user.accountScore">
         <div class="li-subContainer">
           <div class="user-container">
             <div class="image-container">
@@ -24,50 +15,33 @@
         </div>
       </li>
     </ol>
-    <div v-else>
-      <p>Le designer est inconnu...</p>
-      <p>Aucun résultat pour "{{ searchQuery }}"</p>
-    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: "UsersList",
+  name: "SortedUsersList",
+
   data() {
     return {
-      searchQuery: null
+      names: ["Bob", "Billy", "Mary", "Jane"]
     };
   },
+
   computed: {
-    resultQuery() {
-      if (this.searchQuery) {
-        return this.$store.state.users.filter(user => {
-          return this.searchQuery
-            .toLowerCase()
-            .split(" ")
-            .every(v => user.firstName.toLowerCase().includes(v));
-        });
-      } else {
-        return this.$store.state.users;
-      }
+    sortUsers() {
+      // Set slice() to avoid to generate an infinite loop!
+      return this.$store.state.users.slice().sort(function (a, b) {
+        return b.accountScore - a.accountScore;
+      });
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.searchbar {
-  width: 100%;
-  padding: 6px 8px;
-  background-color: $white;
-  border: 2px solid $primary;
-  border-radius: 4px;
-}
-
 .list-container {
   height: 100%;
-  background: $gradientBG;
 
   ol {
     counter-reset: users;
@@ -91,6 +65,7 @@ export default {
         min-width: 56px;
         height: 56px;
         margin-right: 16px;
+        margin-left: 8px;
 
         img {
           width: 100%;
@@ -103,6 +78,16 @@ export default {
         display: flex;
         align-items: center;
       }
+    }
+
+    li:before {
+      width: 68px;
+      content: "0" counter(users);
+      font-size: 48px;
+      color: $accent;
+    }
+    li:nth-child(n + 10):before {
+      content: counter(users);
     }
   }
 }

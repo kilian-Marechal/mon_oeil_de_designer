@@ -1,17 +1,10 @@
-<template>
-  <div class="">
-    <RankedUsersList />
-  </div>
-</template>
+<template><p>nique</p></template>
 
 <script>
 // @ is an alias to /src
-import RankedUsersList from "@/components/UsersList.vue";
 
 export default {
   name: "About",
-  components: {
-    RankedUsersList
-  }
+  components: {}
 };
 </script>
