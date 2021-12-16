@@ -7,7 +7,6 @@
 body {
   min-height: 100vh;
   font-family: "Manrope", sans-serif;
-  font-style: normal;
   font-weight: 400;
   font-size: 16px;
   letter-spacing: 0.5px;
@@ -19,9 +18,9 @@ body {
 .background-title {
   position: absolute;
   top: 45%;
-  left: 0%;
-  font-weight: 800;
-  font-size: 80px;
+  left: calc(0% - 210px);
+  font-weight: 400;
+  font-size: 100px;
   color: $accent;
   opacity: 0.1;
   transform: rotate(90deg);
@@ -34,6 +33,7 @@ body {
 }
 
 .title {
+  font-weight: 400;
   font-size: 32px;
   color: $font-color;
   line-height: 40px;
@@ -56,7 +56,7 @@ ul {
 }
 
 button {
-  padding: 8px 12px;
+  padding: 8px 16px;
   border-radius: 2px;
   border: none;
   cursor: pointer;
@@ -73,9 +73,20 @@ button {
 }
 
 .play-button {
+  font-size: 32px;
+  font-weight: 400;
   background-color: $secondary;
   color: $white;
-  padding: 16px 32px;
+  padding: 16px 32px 16px 24px;
+  border-radius: 4px;
+}
+
+.continue-button {
+  font-size: 24px;
+  font-weight: 400;
+  background-color: $secondary;
+  color: $white;
+  padding: 16px 32px 16px 24px;
   border-radius: 4px;
 }
 
@@ -101,6 +112,10 @@ button {
 
 .mb-32 {
   margin-bottom: 32px;
+}
+
+.mb-40 {
+  margin-bottom: 40px;
 }
 
 .pr-40 {

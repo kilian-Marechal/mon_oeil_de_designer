@@ -115,7 +115,21 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 24px 32px 8px 32px;
+    padding: 24px 16px 8px 16px;
+
+    .save-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      background-color: $secondary;
+      cursor: pointer;
+      border-radius: 6px;
+
+      img {
+        object-fit: cover;
+      }
+    }
   }
 
   input {
@@ -140,8 +154,15 @@ export default {
     justify-content: space-between;
   }
 
+  .button {
+    cursor: pointer;
+    transition: 200ms ease-out;
+    will-change: background-color, transform;
+  }
+
   .active {
     background-color: $primary;
+    transform: translateY(-2px);
   }
 
   .user-stats {
@@ -150,6 +171,9 @@ export default {
 
     .user-stats-container {
       width: auto;
+      cursor: pointer;
+      transition: 200ms ease-out;
+      will-change: transform;
     }
   }
 }

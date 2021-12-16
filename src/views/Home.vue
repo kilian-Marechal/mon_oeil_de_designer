@@ -21,9 +21,7 @@
         </p>
       </div>
       <h1 class="title mb-24">Entraînez votre oeil de designer</h1>
-      <button class="play-button title">
-        <img src="../assets/svgs/maskb.svg" alt="" /> Jouer
-      </button>
+      <PlayButton />
     </div>
   </div>
   <Nav />
@@ -32,11 +30,13 @@
 <script>
 // @ is an alias to /src
 import Nav from "@/components/Nav.vue";
+import PlayButton from "@/components/PlayButton.vue";
 
 export default {
   name: "Home",
   components: {
-    Nav
+    Nav,
+    PlayButton
   }
 };
 </script>
@@ -119,9 +119,5 @@ export default {
   h1 {
     width: 260px;
   }
-}
-
-.background-title {
-  left: calc(0% - 185px);
 }
 </style>

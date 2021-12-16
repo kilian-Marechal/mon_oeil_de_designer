@@ -1,14 +1,17 @@
 <template>
+  <!-- Modal -->
   <div
     class="modal"
     :class="{ modalActive: optionsOpened }"
-    @click="optionsToggle"
+    @click="this.optionsOpened = !this.optionsOpened"
   ></div>
-  <div class="edit-profile" :class="{ editOpened: editOpened }">
+
+  <!-- Edit Profile -->
+  <div class="slide" :class="{ slideOpened: editOpened }">
     <div class="primary-button-container">
       <button
         class="primary-button save-button button mb-32"
-        @click="editToggle"
+        @click="this.editOpened = !this.editOpened"
       >
         Enregistrer
       </button>
@@ -30,9 +33,43 @@
       </div>
     </div>
   </div>
+
+  <!-- SignUp -->
+  <div class="slide" :class="{ slideOpened: signUpOpened }">
+    <div class="title-button-container mb-16">
+      <h2 class="title">Bienvenue jeune designer</h2>
+      <button
+        class="primary-button close-button"
+        @click="this.signUpOpened = !this.signUpOpened"
+      >
+        <img src="../assets/svgs/Close.svg" alt="" />
+      </button>
+    </div>
+    <div class="input-form-centered">
+      <p class="mb-40">
+        Reçois un magic-link dans ta boite mail pour rejoindre "Mon Oeil De
+        Designer" !
+      </p>
+      <div class="input-container">
+        <label for="user_email">Ton email</label>
+        <input
+          class="email-input mb-40"
+          type="text"
+          v-model="$store.state.user.email"
+          placeholder="mon.email@gmail.com"
+          id="user_email"
+        />
+      </div>
+      <button class="continue-button">Continuer</button>
+    </div>
+  </div>
+
   <div class="profile-block section" v-if="$store.state.user.connected">
     <div class="user-container mb-24">
-      <button class="options-button" @click="optionsToggle">
+      <button
+        class="options-button"
+        @click="this.optionsOpened = !this.optionsOpened"
+      >
         <img src="../assets/svgs/Settings.svg" alt="" />
       </button>
       <div class="image-container">
@@ -42,11 +79,11 @@
         <h1 class="title">{{ $store.state.user.name }}</h1>
       </div>
       <div class="config-popup" :class="{ opened: optionsOpened }">
-        <button class="row mb-16" @click="editToggle">
+        <button class="row mb-16" @click="this.editOpened = !this.editOpened">
           <img src="../assets/svgs/Profil.svg" alt="" />
           <p>Modifier mon profil</p>
         </button>
-        <button class="row">
+        <button class="row" @click="deconnectUser">
           <img src="../assets/svgs/LogOut.svg" alt="" />
           <p>Se déconnecter</p>
         </button>
@@ -75,8 +112,18 @@
       Connectez vous pour <br />enregistrer votre progression.
     </p>
     <div>
-      <button class="primary-button">S'inscrire</button>
-      <button class="dark-button">Se connecter</button>
+      <button
+        class="primary-button"
+        @click="this.signUpOpened = !this.signUpOpened"
+      >
+        S'inscrire
+      </button>
+      <button
+        class="dark-button"
+        @click="this.$store.state.user.connected = true"
+      >
+        Se connecter
+      </button>
     </div>
   </div>
 </template>
@@ -87,15 +134,14 @@ export default {
   data() {
     return {
       optionsOpened: false,
-      editOpened: false
+      editOpened: false,
+      signUpOpened: false
     };
   },
   methods: {
-    optionsToggle: function () {
-      this.optionsOpened = !this.optionsOpened;
-    },
-    editToggle: function () {
-      this.editOpened = !this.editOpened;
+    deconnectUser() {
+      this.$store.state.user.connected = false;
+      this.optionsOpened = false;
     }
   }
 };
@@ -120,7 +166,8 @@ export default {
   height: 100%;
 }
 
-.edit-profile {
+.slide {
+  z-index: 4;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -131,34 +178,51 @@ export default {
   transition-property: height;
   transition: 350ms ease;
 
-  .image-section {
-    display: flex;
-    align-items: center;
-  }
-
   .primary-button-container {
     display: flex;
     justify-content: flex-end;
+    align-items: center;
   }
 
-  .infos-container {
-    .infos-subcontainer {
-      p {
-        margin-left: 8px;
-      }
+  .title-button-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
 
-      input {
-        width: 100%;
-        padding: 8px 8px;
-        background-color: $white;
-        border: 2px solid $primary;
-        border-radius: 4px;
+    .close-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      background-color: $secondary;
+      cursor: pointer;
+      border-radius: 6px;
+
+      img {
+        display: inline-block;
+        object-fit: cover;
       }
     }
   }
+
+  input {
+    width: 100%;
+    padding: 8px 8px;
+    background-color: $white;
+    border: 2px solid $primary;
+    border-radius: 4px;
+  }
+
+  .email-input {
+    width: 100%;
+    padding: 6px 8px;
+    background-color: $white;
+    border: 2px solid $primary;
+    border-radius: 4px;
+  }
 }
 
-.editOpened {
+.slideOpened {
   z-index: 20;
   height: 100%;
 }
@@ -242,15 +306,34 @@ export default {
   }
 }
 
+.image-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
 .image-container {
+  max-width: 72px;
+  max-height: 72px;
   width: 72px;
   height: 72px;
   margin-right: 16px;
 
   img {
+    display: inline-block;
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+}
+
+.input-form-centered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .input-container {
+    width: 100%;
   }
 }
 </style>
